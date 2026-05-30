@@ -1,0 +1,15 @@
+.env
+
+__pycache__/
+*.pyc
+
+venv/
+.venv/
+
+nevark.db
+
+memory/
+
+vector_store/chroma_db/
+
+uploads/
