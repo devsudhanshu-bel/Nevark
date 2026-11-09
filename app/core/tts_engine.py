@@ -53,3 +53,44 @@ def speak(text: str):
     except Exception as e:
 
         print("❌ TTS ERROR:", e)
+
+def generate_audio(text: str):
+
+    if not text:
+        return None
+
+    try:
+
+        audio = client.text_to_speech.convert(
+
+            voice_id=VOICE_ID,
+
+            model_id=ELEVEN_MODEL,
+
+            text=text,
+
+            output_format="mp3_44100_128"
+        )
+
+        os.makedirs(
+            "generated_audio",
+            exist_ok=True
+        )
+
+        filename = (
+            f"generated_audio/"
+            f"{uuid.uuid4().hex}.mp3"
+        )
+
+        save(audio, filename)
+
+        return filename
+
+    except Exception as e:
+
+        print(
+            "❌ AUDIO GENERATION ERROR:",
+            e
+        )
+
+        return None
